@@ -7,8 +7,14 @@ const Tetris = () => {
     return (
         <div>
             <Stage />
-            <Display />
-            <StartButton />
+            <aside>
+                <div>
+                    <Display text="Score" />
+                    <Display text="Rows" />
+                    <Display text="Level" />
+                </div>
+                <StartButton />
+            </aside>
         </div>
     )
 }
