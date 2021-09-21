@@ -6,13 +6,13 @@ width: 100vw;
 height: 100vh;
 background: url(${bgImage}) #000;
 background-size: cover;
-overflow: hidden;    
+overflow: auto;    
 `
 
 export const StyledTetris = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 40px;
+  padding: 15px;
   margin: 0 auto;
   max-width: 900px;
   aside {
