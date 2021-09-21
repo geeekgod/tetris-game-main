@@ -19,7 +19,7 @@ const Tetris = () => {
         <div>
             <StyledTetrisWrapper>
                 <StyledTetris>
-                    <Stage stage={createStage()} />
+                    <Stage stage={stage} />
                     <aside>
                         {gameOver ? (
                             <Display gameOver={gameOver} text="Game Over" />
