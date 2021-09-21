@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-import { createStage } from '../gameHelpers'
+import { checkCollision, createStage } from '../gameHelpers'
 import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
@@ -12,19 +12,31 @@ const Tetris = () => {
     const [gameOver, setGameOver] = useState(false);
 
     const [player, updatePlayerPos, resetPlayer] = usePlayer();
-    const [stage, setStage] = useStage(player);
+    const [stage, setStage] = useStage(player, resetPlayer);
 
     const movePlayer = dir => {
-        updatePlayerPos({ x: dir, y: 0, collided: false });
+        if (!checkCollision(player, stage, { x: dir, y: 0 })) {
+            updatePlayerPos({ x: dir, y: 0 });
+        }
     }
 
     const startGame = () => {
         setStage(createStage());
         resetPlayer();
+        setGameOver(false);
     }
 
     const drop = () => {
-        updatePlayerPos({ x: 0, y: 1, collided: false });
+        if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+            updatePlayerPos({ x: 0, y: 1, collided: false });
+        } else {
+            if (player.pos.y < 1) {
+                console.log("Game Over !!");
+                setGameOver(true);
+                setDropTime(null);
+            }
+            updatePlayerPos({ x: 0, y: 0, collided: true })
+        }
     }
 
     const dropPlayer = () => {
