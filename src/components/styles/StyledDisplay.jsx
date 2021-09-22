@@ -11,7 +11,7 @@ export const StyledDisplay = styled.div`
   width: 100%;
   border-radius: 20px;
   color: ${props => (props.gameOver ? 'red' : '#999')};
-  background: #000;
+  background: rgb(25, 5, 34);
   font-family: Pixel, Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
 `
