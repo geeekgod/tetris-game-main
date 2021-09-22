@@ -8,7 +8,7 @@ export const useStage = (player, resetPlayer) => {
   useEffect(() => {
     setRowsCleared(0);
 
-    const sweepRows = (newStage) => {
+    const sweepRows = (newStage) =>
       newStage.reduce((ack, row) => {
         if (row.findIndex((cell) => cell[0] === 0) === -1) {
           setRowsCleared((prev) => prev + 1);
@@ -18,7 +18,6 @@ export const useStage = (player, resetPlayer) => {
         ack.push(row);
         return ack;
       }, []);
-    };
 
     const updateStage = (prevStage) => {
       const newStage = prevStage.map((row) =>
@@ -45,7 +44,7 @@ export const useStage = (player, resetPlayer) => {
     };
 
     setStage((prev) => updateStage(prev));
-  }, [player, resetPlayer]);
+  }, [player, resetPlayer, rowsCLeared]);
 
   return [stage, setStage];
 };
